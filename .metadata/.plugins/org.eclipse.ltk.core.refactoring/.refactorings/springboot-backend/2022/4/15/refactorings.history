@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.springboot.aspect&apos; to &apos;Employee-Address-Micoservice/src/main/java&apos;&#x0D;&#x0A;- Original project: &apos;springboot-backend&apos;&#x0D;&#x0A;- Destination element: &apos;Employee-Address-Micoservice/src/main/java&apos;&#x0D;&#x0A;- Original element: &apos;springboot-backend/src/main/java/com.springboot.aspect&apos;" description="Copy package" destination="=Employee-Address-Micoservice/src\/main\/java" element1="/src\/main\/java&lt;com.springboot.aspect" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1649251788446" version="1.0"/>
+</session>

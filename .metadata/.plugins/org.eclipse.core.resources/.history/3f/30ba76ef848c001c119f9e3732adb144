@@ -1,0 +1,37 @@
+
+public class StringPool {
+
+	enum abc {
+		max, min;
+	}
+
+	public static void main(String[] args) {
+
+		int[] arr = { 2, 3, 6, 4, 1 };
+		/*
+		 * for (int i = 0; i < a.length; i++) { for (int j = 1; j < a.length; j++) { if
+		 * (a[i] > a[j]) { int temp = a[i]; a[i] = a[j]; a[j] = temp; } } }
+		 */
+		for (int i = 0; i < arr.length; i++)   
+		{  
+		for (int j = i + 1; j < arr.length; j++)   
+		{  
+		int tmp = 0;  
+		if (arr[i] > arr[j])   
+		{  
+		tmp = arr[i];  
+		arr[i] = arr[j];  
+		arr[j] = tmp;  
+		}  
+		}  
+		int n = arr[arr.length - 1];
+		int sum = n * (n + 1) / 2;
+		int m = 0;
+
+		for (int i1 = 0; i1 < arr.length; i1++) {
+			m = m + arr[i1];
+		}
+		System.out.println(sum - m);
+	}
+
+}

@@ -1,0 +1,27 @@
+
+public class SubsetSumProblem {
+
+	public static void main(String[] args) {
+
+		int[] a = { 2, 3, 7, 8, 10 };
+		int s = 11;
+		int n = a.length;
+		int fs = 0;
+		SubsetSumProblemFromMemoization(a, s, n, fs);
+
+	}
+
+	private static int SubsetSumProblemFromMemoization(int[] a, int s, int n, int fs) {
+
+		if (fs == s) {
+			return 1;
+		}
+
+		else if (fs <= s) {
+			return fs = a[n - 1] + SubsetSumProblemFromMemoization(a, s, n - 1, fs);
+		} else {
+			return fs = SubsetSumProblemFromMemoization(a, s, n - 1, fs);
+		}
+	}
+
+}

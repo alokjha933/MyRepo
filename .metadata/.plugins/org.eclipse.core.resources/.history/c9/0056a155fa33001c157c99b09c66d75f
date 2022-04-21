@@ -1,0 +1,40 @@
+
+public class SubsetSumProblem {
+
+	public static void main(String[] args) {
+
+		int[] a = { 2, 3, 7, 8, 10 };
+		int s = 11;
+		int n = a.length;
+
+		Boolean memoization[][] = new Boolean[n + 1][s + 1];
+
+		for (int i = 0; i < n + 1; i++) {
+			for (int j = 0; j < s + 1; j++) {
+				if (i == 0) {
+					memoization[i][j] = false;
+				}
+				if (j == 0) {
+					memoization[i][j] = true;
+				}
+			}
+		}
+		Boolean val = SubsetSumProblemFromMemoization(a, s, n, memoization);
+		System.out.println(val);
+	}
+
+	private static Boolean SubsetSumProblemFromMemoization(int[] a, int s, int n, Boolean[][] memoization) {
+		if (s == 0) {
+			return true;
+		}
+		if (n < 0) {
+			return false;
+		} else if (a[n - 1] <= s) {
+			return memoization[n][s] = SubsetSumProblemFromMemoization(a, s - a[n - 1], n - 1, memoization)
+					|| SubsetSumProblemFromMemoization(a, s, n - 1, memoization);
+		} else {
+			return memoization[n][s] = SubsetSumProblemFromMemoization(a, s, n - 1, memoization);
+		}
+	}
+
+}

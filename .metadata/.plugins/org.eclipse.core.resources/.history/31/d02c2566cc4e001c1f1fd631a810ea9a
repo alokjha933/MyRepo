@@ -1,0 +1,55 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+interface FunctionalInterface {
+	public void add(int a, int b);
+}
+
+interface Ianonymous {
+	public void show();
+}
+
+public class StreamAPI {
+
+	public void hey() {
+		int a = 1;
+		System.out.println(a);
+	}
+
+	int a = 0;
+
+	public static void main(String[] args) {
+
+		List<String> name = Arrays.asList("SReflection", "Collection", "Stream");
+		List<Integer> list = Arrays.asList(1, 4, 6, 2, 3, 10, 9, 7);
+		System.out.println(list.stream().reduce(Integer.MAX_VALUE, (a, b) -> Integer.min(a, b)));
+		Stream<String> s = name.stream();
+		// List<String> list = s.filter(s1 ->
+		// s1.startsWith("S")).collect(Collectors.toList());
+		s.filter(s1 -> s1.startsWith("S")).forEach(e -> {
+			System.out.println(e);
+		});
+
+		int a = 10, b = 10;
+		FunctionalInterface f1 = (int c, int d) -> {
+			System.out.println(c + d);
+		};
+
+		f1.add(a, b);
+
+		Ianonymous ann = new Ianonymous() {
+
+			@Override
+			public void show() {
+				System.out.println("Hey!! I am Working");
+
+			}
+		};
+
+		ann.show();
+		// System.out.println(list.toString());
+	}
+}

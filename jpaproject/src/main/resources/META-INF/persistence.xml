@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+
+    <persistence-unit name="config">
+        <properties>
+           <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+           <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Customer"/>
+           <property name="javax.persistence.jdbc.user" value="root"/>
+           <property name="javax.persistence.jdbc.password" value="Root@1234"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

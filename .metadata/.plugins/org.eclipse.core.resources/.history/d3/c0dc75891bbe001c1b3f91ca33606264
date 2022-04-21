@@ -1,0 +1,40 @@
+package com.springboot.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Email {
+
+	@Id
+	private String emailId;
+	@ManyToOne()
+	@JoinColumn(name = "ID")
+	Student std;
+
+	public Email(Student std, String emailId) {
+		this.std = std;
+		this.emailId = emailId;
+	}
+
+	public Student getStd() {
+		return std;
+	}
+
+	public Email() {
+	}
+
+	public void setStd(Student std) {
+		this.std = std;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+}

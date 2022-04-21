@@ -1,0 +1,24 @@
+package stream;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StreamPractice {
+
+	public static void main(String[] args) {
+
+		// filter with name
+		List<String> nameList = Arrays.asList("Alok", "Alpha", "Aman", "Shubham", "Ankur", "Main");
+		List<String> name = nameList.stream().filter(i -> i.startsWith("A")).collect(Collectors.toList());
+		System.out.println("Name Starts With A: " + name.toString());
+		List<String> name1 = nameList.stream().filter(i -> i.startsWith("A")).map(i -> i.toLowerCase())
+				.collect(Collectors.toList());
+		System.out.println("Name Starts With A and return in lower case: " + name1.toString());
+
+		// find name with max Age
+		List<Employee> empList = Arrays.asList(22, "Alok");
+
+	}
+
+}

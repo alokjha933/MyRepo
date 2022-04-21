@@ -1,0 +1,23 @@
+
+public class StringPool {
+
+	enum abc {
+		max, min;
+	}
+
+	public static void main(String[] args) {
+
+		int[] a = { 1, 2, 3, 4, 6 };
+		int s = 0;
+		int i = 1;
+		while (i < a.length) {
+			if (i != a[i - 1]) {
+				s = i;
+				break;
+			}
+			i++;
+		}
+		System.out.println(s);
+	}
+
+}

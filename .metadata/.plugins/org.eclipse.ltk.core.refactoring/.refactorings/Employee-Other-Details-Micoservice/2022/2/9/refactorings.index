@@ -1,0 +1,12 @@
+1645586902493	Rename package 'com.microservices.employeeaddressmicroservice'
+1645586952012	Delete element
+1645586968332	Rename type 'EmployeeAddressController'
+1645586984448	Rename type 'EmployeeAddress'
+1645587005028	Rename type 'EmployeeAddressRepository'
+1645587024517	Rename type 'EmployeeAddressService'
+1645601998567	Rename type 'EmployeeAddressDao'
+1645602134880	Rename local variable 'empadd'
+1645602561890	Rename type 'EmployeeOthereDtls'
+1645603193627	Rename field 'employeeOthereDtlsServicee'
+1645603204881	Rename type 'EmployeeOthereDtlsService'
+1645603217344	Rename type 'EmployeeOthereDtlsRepository'

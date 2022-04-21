@@ -1,0 +1,32 @@
+package com.src.java;
+
+import java.util.Arrays;
+
+public class Anagram {
+
+	public static void main(String[] args) {
+
+		String str1 = "heart";
+		String str2 = "earth";
+		boolean flag = false;
+		if (str1.length() != str2.length()) {
+			flag = false;
+		} else {
+
+			char[] c1 = str1.toCharArray();
+			char[] c2 = str2.toCharArray();
+
+			Arrays.sort(c1);
+			Arrays.sort(c2);
+			flag = Arrays.equals(c1, c2);
+		}
+
+		if (flag) {
+			System.out.println(str1 + " and " + str2 + " are Anagrams");
+		} else {
+			System.out.println("Not Anagram");
+		}
+
+	}
+
+}

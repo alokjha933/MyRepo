@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Microservic-Config-1&apos; to &apos;War-Deployment&apos;" description="Rename resource &apos;Microservic-Config-1&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/Microservic-Config-1" name="War-Deployment" stamp="1647157382933" updateReferences="true"/>
+</session>

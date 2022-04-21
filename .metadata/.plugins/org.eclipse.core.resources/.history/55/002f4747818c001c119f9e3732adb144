@@ -1,0 +1,23 @@
+
+public class StringPool {
+
+	enum abc {
+		max, min;
+	}
+
+	public static void main(String[] args) {
+
+		int[] a = { 1, 2, 3, 4, 6 };
+		int n = 0;
+		int sum = n * (n + 1) / 2;
+		System.out.println(sum);
+		int m = 0;
+
+		for (int i = 0; i < a.length; i++) {
+			m = m + a[i];
+		}
+		System.out.println(m);
+		System.out.println(m - sum);
+	}
+
+}

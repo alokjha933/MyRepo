@@ -1,0 +1,64 @@
+package com.springboot.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Student {
+
+	@Id
+	private Long id;
+	private String sName;
+	private String sEmail;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getsName() {
+		return sName;
+	}
+
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+
+	public String getsEmail() {
+		return sEmail;
+	}
+
+	public void setsEmail(String sEmail) {
+		this.sEmail = sEmail;
+	}
+
+	public Student() {
+	}
+
+	public Student(Long id, String sName, String sEmail) {
+		this.id = id;
+		this.sName = sName;
+		this.sEmail = sEmail;
+	}
+
+}
+
+@Entity
+ class Address extends Student{
+	
+	private int aid;
+
+	public int getAid() {
+		return aid;
+	}
+
+	public void setAid(int aid) {
+		this.aid = aid;
+	}
+}

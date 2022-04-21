@@ -1,0 +1,23 @@
+
+public class Memoization {
+
+	public static void main(String[] args) {
+		System.out.println(fib(3));
+	}
+
+	// 0,1,1,2,3,5,8,13,21,32,.....
+	private static long fib(long n) {
+		long prev[]=new long[23];
+		long result=0;
+		if (prev[(int)n]!=0) {
+			return prev[(int) n];
+		}
+		if (n <= 2) {
+			return 1;
+		} else {
+			result= fib(n - 1) + fib(n - 2);
+			prev[(int)n]=result;
+			return result;
+		}
+	}
+}

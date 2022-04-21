@@ -1,0 +1,25 @@
+
+public class StringPool {
+
+	enum abc {
+		max, min;
+	}
+
+	public static void main(String[] args) {
+
+		int[] a = { 1, 2, 3, 4, 6 };
+		int i = 1;
+		int m = 1;
+		int[] arr = new int[m];
+		while (i <= a.length) {
+			if (i != a[i - 1]) {
+				arr[m] = i;
+				m++
+				break;
+			}
+			i++;
+		}
+		System.out.println(arr.toString());
+	}
+
+}

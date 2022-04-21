@@ -1,0 +1,17 @@
+1633235745466	Delete element
+1633235767017	Move 'view' to 'webapp'
+1633235782589	Delete element
+1633235814244	Move 'web.xml' to 'WEB-INF'
+1633235820245	Move 'telusko-servlet.xml' to 'WEB-INF'
+1633235953987	Delete element
+1633237066840	Move 'return.jsp' to 'view'
+1633237245072	Rename resource 'return.jsp'
+1633338085262	Move compilation unit
+1633338105592	Move compilation unit
+1633338114730	Move compilation unit
+1633342675998	Copy package
+1633342689516	Delete element
+1633342711333	Rename package 'com.mvc.impl.dao.copy'
+1633352145325	Copy package
+1633352156168	Move folder
+1633352641355	Move 'view' to 'webapp'
