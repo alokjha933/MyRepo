@@ -1,5 +1,7 @@
 package com.springboot.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,7 +52,7 @@ public class Employee {
 		this.emailId = emailId;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.springboot.exception.ResourceNotFoundException;
+import com.springboot.exception.BusinessException;
 import com.springboot.model.Employee;
 import com.springboot.model.EmployeeAddress;
 import com.springboot.repository.EmployeeRepository;
+import com.springboot.services.EmployeeService;
+
+import net.minidev.json.parser.ParseException;
 
 @CrossOrigin("http://localhost:4200/")
 @RestController
@@ -34,6 +37,9 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
+
+	@Autowired
+	EmployeeService employeeService;
 
 	@Autowired
 	RestTemplate getRestTemplate;
@@ -48,8 +54,24 @@ public class EmployeeController {
 
 	// create Employee
 	@PostMapping(value = "/employees")
-	public Employee addEmployees(@RequestBody Employee employee) {
-		return employeeRepository.save(employee);
+	public ResponseEntity<Employee> addEmployees(@RequestBody Employee employee) throws ParseException {
+		validateInputRequest(employee);
+		Employee empDtls = employeeService.addEmployeeDetails(employee);
+		return ResponseEntity.ok(empDtls);
+	}
+
+	private void validateInputRequest(Employee employee) {
+
+		if (!StringUtils.hasText(employee.getFirstName())) {
+			throw new BusinessException("first Name is required");
+		}
+		if (!StringUtils.hasText(employee.getLastName())) {
+			throw new BusinessException("Last Name is required");
+
+		}
+		if (!StringUtils.hasText(employee.getEmailId())) {
+			throw new BusinessException("Email Id is required");
+		}
 	}
 
 	// get Employee Details by Id
@@ -69,8 +91,11 @@ public class EmployeeController {
 		EmployeeAddress empAddress = getRestTemplate
 				.getForObject("http://Employee-Address-Microservice/EmployeeAddress/" + id, EmployeeAddress.class);
 
-		Employee employee = employeeRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException("Employee Deatils not avaialble for the entered Id: " + id));
+		Employee employee = employeeRepository.findById(id).get();/*
+																	 * .orElseThrow( () -> new
+																	 * ResourceNotFoundException("Employee Deatils not avaialble for the entered Id: "
+																	 * + id));
+																	 */
 
 		employee.setEmpAddress(empAddress);
 		employee.getEmpAddress().setEmpDtls(empAddress.getEmpDtls());
@@ -79,18 +104,25 @@ public class EmployeeController {
 	}
 
 	@GetMapping(value = "/emp/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Employee getOnlyEmployeeDtlsById(@PathVariable Long id) {
+	public ResponseEntity<Employee> getOnlyEmployeeDtlsById(@PathVariable Long id) {
 
-		Employee employee = employeeRepository.getById(id);
-		return employee;
+		Employee employee = employeeRepository.findById(id).get()/*
+																	 * orElseThrow( () -> new
+																	 * ResourceNotFoundException("Employee Deatils not avaialble for the entered Id: "
+																	 * + id))
+																	 */;
+		return ResponseEntity.ok(employee);
 	}
 
 	// Update Employee Details
 	@PutMapping(value = "/employees/{id}")
 	public ResponseEntity<Employee> updateEmployeeDetails(@PathVariable Long id,
 			@RequestBody Employee employeeDetails) {
-		Employee employee = employeeRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException("Employee Deatils not avaialble for the entered Id: " + id));
+		Employee employee = employeeRepository.findById(id).get()/*
+																	 * orElseThrow( () -> new
+																	 * ResourceNotFoundException("Employee Deatils not avaialble for the entered Id: "
+																	 * + id))
+																	 */;
 		employee.setFirstName(employeeDetails.getFirstName());
 		employee.setLastName(employeeDetails.getLastName());
 		employee.setEmailId(employeeDetails.getEmailId());
@@ -103,8 +135,11 @@ public class EmployeeController {
 	// delete Employee
 	@DeleteMapping(value = "/employees/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id) {
-		Employee employee = employeeRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException("Employee Deatils not avaialble for the entered Id: " + id));
+		Employee employee = employeeRepository.findById(id).get()/*
+																	 * .orElseThrow( () -> new
+																	 * ResourceNotFoundException("Employee Deatils not avaialble for the entered Id: "
+																	 * + id))
+																	 */;
 		employeeRepository.delete(employee);
 		Map<String, Boolean> response = new HashMap<String, Boolean>();
 		response.put("deleted", Boolean.TRUE);
